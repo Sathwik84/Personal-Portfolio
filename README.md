@@ -74,6 +74,16 @@ The `.gitignore` file automatically ensures that `node_modules` (the heavy folde
 3.  **Drag & Drop**: Drag the **`dist`** folder (not the main project folder) directly onto the Netlify "Sites" page.
 4.  **Done!**: Netlify will give you a live URL instantly.
 
+## 🔗 Adding Your Live Link to GitHub
+
+Once your site is deployed (e.g., on Netlify), you should add the link to your GitHub repository so people can easily find it.
+
+1.  Go to your repository on GitHub.
+2.  Look for the **"About"** section on the right sidebar.
+3.  Click the **gear icon** (Settings) next to "About".
+4.  In the **"Website"** field, paste your live URL (e.g., `https://your-site.netlify.app`).
+5.  Click **Save Changes**.
+
 ## 🎨 Customizing Styles
 
 -   **Colors**: Edit `src/styles/variables.css`. Change `--primary-color` or `--secondary-color` to update the theme.

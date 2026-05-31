@@ -15,6 +15,11 @@
     rel="stylesheet">
 
   <title>My Portfolio</title>
+  <script>
+    if (localStorage.getItem('theme') === 'light') {
+      document.documentElement.setAttribute('data-theme', 'light');
+    }
+  </script>
 </head>
 
 <body>
@@ -35,24 +40,31 @@
     <div class="container header-content">
       <a href="#" class="logo">Portfolio.</a>
 
-      <nav class="nav-desktop">
-        <ul>
-          <li><a href="#hero">Home</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#skills">Skills</a></li>
-          <li><a href="#projects">Projects</a></li>
-          <li><a href="#services">Services</a></li>
-          <li><a href="#experience">Experience</a></li>
-          <li><a href="#achievements">Achievements</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-      </nav>
+      <div style="display: flex; align-items: center; gap: 1.5rem;">
+        <nav class="nav-desktop">
+          <ul>
+            <li><a href="#hero">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#achievements">Achievements</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </nav>
 
-      <button id="menu-btn" class="menu-btn" aria-label="Menu">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
+        <button id="theme-toggle" class="theme-toggle" aria-label="Toggle Theme">
+          <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+          <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+        </button>
+
+        <button id="menu-btn" class="menu-btn" aria-label="Menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
     </div>
 
     <!-- Mobile Menu -->
@@ -81,7 +93,7 @@
         <p class="reveal">Computer Science & Engineering Student (AI & ML) | Building Intelligent Systems</p>
         <div class="hero-btns reveal">
           <a href="#projects" class="btn">View Work</a>
-          <a href="#contact" class="btn btn-outline">Request Resume</a>
+          <a href="#" id="request-resume-btn" class="btn btn-outline">Request Resume</a>
         </div>
       </div>
     </section>
@@ -168,6 +180,44 @@
         <h2 class="section-title reveal">Featured Projects</h2>
         <div class="projects-grid">
 
+          <!-- 3. Sign Language to Text & Voice (Pinned & Highlighted as Major Project) -->
+          <article class="project-card glass reveal highlight-major">
+            <div class="project-image">
+              <span class="project-type-badge major">✨ Major Project</span>
+              <div class="placeholder-img">Sign Lang AI</div>
+            </div>
+            <div class="project-info">
+              <h3>📌 Sign Language to Voice</h3>
+              <p>Real-time hand gesture recognition system converting sign language into readable text and synthesized
+                spoken audio to bridge communication gaps for the hearing-impaired.</p>
+              <div class="tags">
+                <span>Python</span><span>Deep Learning</span><span>Computer Vision</span>
+              </div>
+              <div class="project-links">
+                <a href="https://github.com/Sathwik84/Sign-language-to-Text-and-Voice" target="_blank">View Code</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- 2. Face Authentication (Pinned & Highlighted as Minor Project) -->
+          <article class="project-card glass reveal highlight-minor">
+            <div class="project-image">
+              <span class="project-type-badge minor">💡 Minor Project</span>
+              <div class="placeholder-img">Face Auth</div>
+            </div>
+            <div class="project-info">
+              <h3>📌 Face Authentication System</h3>
+              <p>A biometric authentication system utilizing Facial Recognition with OpenCV. Enhances security by
+                providing contactless login and access control instead of traditional passwords.</p>
+              <div class="tags">
+                <span>Python</span><span>OpenCV</span><span>Face Recognition</span>
+              </div>
+              <div class="project-links">
+                <a href="https://github.com/Sathwik84/face-authentication" target="_blank">View Code</a>
+              </div>
+            </div>
+          </article>
+
           <!-- 1. Early Disease Prediction -->
           <article class="project-card glass reveal">
             <div class="project-image">
@@ -182,42 +232,6 @@
               </div>
               <div class="project-links">
                 <a href="https://github.com/Sathwik84/Early-Disease-Prediction" target="_blank">View Code</a>
-              </div>
-            </div>
-          </article>
-
-          <!-- 2. Face Authentication -->
-          <article class="project-card glass reveal">
-            <div class="project-image">
-              <div class="placeholder-img">Face Auth</div>
-            </div>
-            <div class="project-info">
-              <h3>Face Authentication System</h3>
-              <p>A biometric authentication system utilizing Facial Recognition with OpenCV. Enhances security by
-                providing contactless login and access control instead of traditional passwords.</p>
-              <div class="tags">
-                <span>Python</span><span>OpenCV</span><span>Face Recognition</span>
-              </div>
-              <div class="project-links">
-                <a href="https://github.com/Sathwik84/face-authentication" target="_blank">View Code</a>
-              </div>
-            </div>
-          </article>
-
-          <!-- 3. Sign Language to Text & Voice -->
-          <article class="project-card glass reveal">
-            <div class="project-image">
-              <div class="placeholder-img">Sign Lang AI</div>
-            </div>
-            <div class="project-info">
-              <h3>Sign Language to Voice</h3>
-              <p>Real-time hand gesture recognition system converting sign language into readable text and synthesized
-                spoken audio to bridge communication gaps for the hearing-impaired.</p>
-              <div class="tags">
-                <span>Python</span><span>Deep Learning</span><span>Computer Vision</span>
-              </div>
-              <div class="project-links">
-                <a href="https://github.com/Sathwik84/Sign-language-to-Text-and-Voice" target="_blank">View Code</a>
               </div>
             </div>
           </article>
@@ -540,6 +554,45 @@
       <p>&copy; 2026 Kaparthy Sathwik. All rights reserved.</p>
     </div>
   </footer>
+
+  <!-- Request Resume Modal -->
+  <div id="resume-modal" class="modal-overlay">
+    <div class="modal-content glass">
+      <button class="modal-close" id="close-resume-modal" aria-label="Close modal">&times;</button>
+      <div class="modal-header">
+        <h2>📬 Request Resume / CV</h2>
+        <p>Select the document you need and enter your email.</p>
+      </div>
+      <form id="resume-request-form" class="modal-form">
+        <!-- Document Type Selector -->
+        <div class="document-selector">
+          <label class="doc-option-label">
+            <input type="radio" name="document-type" value="resume" checked style="display: none;" />
+            <span class="doc-pill">📄 Resume</span>
+          </label>
+          <label class="doc-option-label">
+            <input type="radio" name="document-type" value="cv" style="display: none;" />
+            <span class="doc-pill">💼 Curriculum Vitae (CV)</span>
+          </label>
+        </div>
+        <div class="input-group">
+          <input type="email" id="request-email" placeholder="name@company.com" required aria-label="Your email address" />
+        </div>
+        <button type="submit" class="btn modal-submit-btn">
+          <span class="btn-text">Send Document</span>
+          <span class="btn-loader" style="display: none; vertical-align: middle;">
+            <svg class="spinner" viewBox="0 0 50 50" style="width: 20px; height: 20px; animation: rotate 2s linear infinite; display: inline-block;"><circle cx="25" cy="25" r="20" fill="none" stroke-width="5" stroke="white" stroke-linecap="round" style="stroke-dasharray: 90, 150; stroke-dashoffset: 0;"></circle></svg>
+          </span>
+        </button>
+      </form>
+      <div id="modal-success" class="modal-success-state" style="display: none;">
+        <div class="success-icon">✨</div>
+        <h3>Sent Successfully!</h3>
+        <p>My <span id="success-doc-type">document</span> has been sent to <strong id="success-email">email@example.com</strong></p>
+        <p class="download-caption">Your browser download has also started automatically!</p>
+      </div>
+    </div>
+  </div>
 
   <script type="module" src="/main.js"></script>
 </body>
