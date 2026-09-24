@@ -1,7 +1,38 @@
 import './src/styles/global.css';
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Theme Toggle Logic
+    // 1. PRELOADER LOGIC (Fade out under 1 second)
+    const preloader = document.getElementById('preloader');
+    if (preloader) {
+        setTimeout(() => {
+            preloader.classList.add('fade-out');
+            setTimeout(() => {
+                preloader.style.display = 'none';
+            }, 500);
+        }, 700);
+    }
+
+    // 2. SCROLL PROGRESS INDICATOR BAR & HEADER STICKY SCROLLED STATE
+    const scrollProgress = document.getElementById('scroll-progress');
+    const header = document.getElementById('header');
+
+    window.addEventListener('scroll', () => {
+        const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+        if (totalHeight > 0 && scrollProgress) {
+            const progress = (window.scrollY / totalHeight) * 100;
+            scrollProgress.style.width = `${progress}%`;
+        }
+
+        if (header) {
+            if (window.scrollY > 40) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        }
+    });
+
+    // 3. THEME TOGGLE (Default to Dark Mode)
     const themeToggleBtn = document.getElementById('theme-toggle');
     const savedTheme = localStorage.getItem('theme') || 'dark';
 
@@ -22,7 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Mobile Menu Toggle
+    // 4. MOBILE MENU TOGGLE
     const menuBtn = document.getElementById('menu-btn');
     const mobileMenu = document.getElementById('mobile-menu');
 
@@ -32,11 +63,17 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Smooth Scroll
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    // 5. SMOOTH SCROLLING & ACTIVE SECTION HIGHLIGHTING
+    const navLinks = document.querySelectorAll('a[href^="#"]');
+    const sections = document.querySelectorAll('section[id]');
+
+    navLinks.forEach(anchor => {
         anchor.addEventListener('click', function (e) {
+            const href = this.getAttribute('href');
+            if (href === '#' || !href.startsWith('#')) return;
+
             e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
+            const target = document.querySelector(href);
             if (target) {
                 target.scrollIntoView({ behavior: 'smooth' });
                 if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
@@ -46,151 +83,156 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Reveal Animations
-    const observer = new IntersectionObserver((entries) => {
+    window.addEventListener('scroll', () => {
+        let currentSection = '';
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop - 120;
+            const sectionHeight = section.offsetHeight;
+            if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
+                currentSection = section.getAttribute('id');
+            }
+        });
+
+        document.querySelectorAll('.nav-desktop a').forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === `#${currentSection}`) {
+                link.classList.add('active');
+            }
+        });
+    });
+
+    // 6. SCROLL REVEAL ANIMATIONS (Triggered on Scroll Into View)
+    const revealObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('animate-in');
-                observer.unobserve(entry.target);
+                revealObserver.unobserve(entry.target);
             }
         });
-    }, { threshold: 0.1 });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
 
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-    // Custom Cursor
+    // 7. PROJECT FILTERING TABS (All, AI/ML, Web Dev, Java, Computer Vision)
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const projectCards = document.querySelectorAll('.project-card');
+
+    filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            filterBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            const filterValue = btn.getAttribute('data-filter');
+
+            projectCards.forEach(card => {
+                const categories = card.getAttribute('data-category') || '';
+                if (filterValue === 'all' || categories.includes(filterValue)) {
+                    card.classList.remove('filtered-out');
+                } else {
+                    card.classList.add('filtered-out');
+                }
+            });
+        });
+    });
+
+    // 8. CUSTOM CURSOR WITH MAGNETIC HOVER EFFECT
     const cursorDot = document.querySelector('[data-cursor-dot]');
     const cursorOutline = document.querySelector('[data-cursor-outline]');
 
-    window.addEventListener('mousemove', (e) => {
-        const posX = e.clientX;
-        const posY = e.clientY;
+    if (cursorDot && cursorOutline && window.innerWidth > 768) {
+        window.addEventListener('mousemove', (e) => {
+            const posX = e.clientX;
+            const posY = e.clientY;
 
-        // Dot follows instantly
-        cursorDot.style.left = `${posX}px`;
-        cursorDot.style.top = `${posY}px`;
+            cursorDot.style.left = `${posX}px`;
+            cursorDot.style.top = `${posY}px`;
 
-        // Outline follows with delay (using animate() for smoothness)
-        cursorOutline.animate({
-            left: `${posX}px`,
-            top: `${posY}px`
-        }, { duration: 500, fill: "forwards" });
-    });
-
-    // Hover effect for links and buttons
-    const interactiveElements = document.querySelectorAll('a, button, .project-card, .skill-card');
-    interactiveElements.forEach(el => {
-        el.addEventListener('mouseenter', () => {
-            document.body.classList.add('hovering');
-            cursorOutline.style.transform = 'translate(-50%, -50%) scale(1.5)';
-            cursorDot.style.transform = 'translate(-50%, -50%) scale(0)';
+            cursorOutline.animate({
+                left: `${posX}px`,
+                top: `${posY}px`
+            }, { duration: 400, fill: "forwards" });
         });
-        el.addEventListener('mouseleave', () => {
-            document.body.classList.remove('hovering');
-            cursorOutline.style.transform = 'translate(-50%, -50%) scale(1)';
-            cursorDot.style.transform = 'translate(-50%, -50%) scale(1)';
-        });
-    });
 
-    // Resume Request Modal Logic
-    const requestResumeBtn = document.getElementById('request-resume-btn');
+        const interactiveElements = document.querySelectorAll('a, button, .project-card, .skill-card, .service-card, .focus-item');
+        interactiveElements.forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                document.body.classList.add('hovering');
+            });
+            el.addEventListener('mouseleave', () => {
+                document.body.classList.remove('hovering');
+            });
+        });
+    }
+
+    // 9. RESUME / CV REQUEST MODAL LOGIC
+    const heroResumeBtn = document.getElementById('hero-request-resume-btn');
+    const navResumeBtn = document.getElementById('nav-request-resume-btn');
     const resumeModal = document.getElementById('resume-modal');
     const closeResumeModal = document.getElementById('close-resume-modal');
     const resumeRequestForm = document.getElementById('resume-request-form');
     const modalSuccess = document.getElementById('modal-success');
+    const successDocType = document.getElementById('success-doc-type');
     const successEmail = document.getElementById('success-email');
 
-    if (requestResumeBtn && resumeModal) {
-        requestResumeBtn.addEventListener('click', (e) => {
-            e.preventDefault();
+    const openModal = (e) => {
+        if (e) e.preventDefault();
+        if (resumeModal) {
             resumeModal.classList.add('active');
-            
-            // Reset modal state
             if (resumeRequestForm) resumeRequestForm.style.display = 'flex';
             if (modalSuccess) modalSuccess.style.display = 'none';
-        });
-    }
+        }
+    };
 
-    if (closeResumeModal && resumeModal) {
-        closeResumeModal.addEventListener('click', () => {
-            resumeModal.classList.remove('active');
-        });
+    const closeModal = () => {
+        if (resumeModal) resumeModal.classList.remove('active');
+    };
 
-        // Close on overlay click
+    if (heroResumeBtn) heroResumeBtn.addEventListener('click', openModal);
+    if (navResumeBtn) navResumeBtn.addEventListener('click', openModal);
+    if (closeResumeModal) closeResumeModal.addEventListener('click', closeModal);
+
+    if (resumeModal) {
         resumeModal.addEventListener('click', (e) => {
-            if (e.target === resumeModal) {
-                resumeModal.classList.remove('active');
-            }
+            if (e.target === resumeModal) closeModal();
         });
     }
 
     if (resumeRequestForm) {
         resumeRequestForm.addEventListener('submit', (e) => {
             e.preventDefault();
-            
+            const submitBtn = resumeRequestForm.querySelector('button[type="submit"]');
             const emailInput = document.getElementById('request-email');
-            const email = emailInput ? emailInput.value : '';
-            
-            // Get selected document type (resume or cv)
-            const docType = resumeRequestForm.querySelector('input[name="document-type"]:checked').value;
-            
-            const submitBtn = resumeRequestForm.querySelector('.modal-submit-btn');
-            const btnText = submitBtn.querySelector('.btn-text');
-            const btnLoader = submitBtn.querySelector('.btn-loader');
-            
-            // Show loading animation
-            if (btnText) btnText.style.display = 'none';
-            if (btnLoader) btnLoader.style.display = 'inline-block';
-            if (submitBtn) submitBtn.disabled = true;
-            
-            // -------------------------------------------------------------
-            // NOTE FOR DEPLOYMENT: Actual Auto-Send Email Automation
-            // You can easily use a free frontend email service like EmailJS
-            // or Web3Forms to send this email to your inbox automatically:
-            // 
-            // fetch('https://api.web3forms.com/submit', {
-            //     method: 'POST',
-            //     headers: { 'Content-Type': 'application/json' },
-            //     body: JSON.stringify({
-            //         access_key: 'YOUR_FREE_ACCESS_KEY_HERE',
-            //         subject: (docType === 'cv' ? 'CV' : 'Resume') + ' Request from ' + email,
-            //         message: 'Hi, please send your ' + docType + ' to ' + email,
-            //         email: email
-            //     })
-            // });
-            // -------------------------------------------------------------
+            const selectedDoc = document.querySelector('input[name="document-type"]:checked')?.value || 'resume';
 
-            // Simulate server request delay
+            const userEmail = emailInput ? emailInput.value : '';
+
+            if (submitBtn) {
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = 'Sending...';
+            }
+
+            // Simulate server request & trigger direct browser file download
             setTimeout(() => {
-                // Restore submit button state
-                if (btnText) btnText.style.display = 'inline-block';
-                if (btnLoader) btnLoader.style.display = 'none';
-                if (submitBtn) submitBtn.disabled = false;
-                
-                // Switch to success state
-                resumeRequestForm.style.display = 'none';
-                if (modalSuccess) modalSuccess.style.display = 'flex';
-                if (successEmail) successEmail.textContent = email;
-                
-                const successDocType = document.getElementById('success-doc-type');
-                if (successDocType) {
-                    successDocType.textContent = docType === 'cv' ? 'Curriculum Vitae (CV)' : 'Resume';
+                if (resumeRequestForm) resumeRequestForm.style.display = 'none';
+                if (modalSuccess) {
+                    if (successDocType) successDocType.textContent = selectedDoc === 'cv' ? 'Curriculum Vitae (CV)' : 'Resume';
+                    if (successEmail) successEmail.textContent = userEmail;
+                    modalSuccess.style.display = 'flex';
                 }
-                
-                // Trigger INSTANT browser download of the correct file
+
+                // Trigger direct file download
                 const downloadLink = document.createElement('a');
-                if (docType === 'cv') {
-                    downloadLink.href = '/cv.pdf';
-                    downloadLink.download = 'Kaparthy_Sathwik_CV.pdf';
-                } else {
-                    downloadLink.href = '/resume.pdf';
-                    downloadLink.download = 'Kaparthy_Sathwik_Resume.pdf';
-                }
+                downloadLink.href = selectedDoc === 'cv' ? '/cv.pdf' : '/resume.pdf';
+                downloadLink.download = selectedDoc === 'cv' ? 'Sathwik_Kaparthy_CV.pdf' : 'Sathwik_Kaparthy_Resume.pdf';
                 document.body.appendChild(downloadLink);
                 downloadLink.click();
                 document.body.removeChild(downloadLink);
-                
-            }, 1500); // 1.5 second premium loader delay
+
+                if (submitBtn) {
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = '<span class="btn-text">Send Document</span>';
+                }
+            }, 800);
         });
     }
 });

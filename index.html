@@ -3,18 +3,42 @@
 
 <head>
   <meta charset="UTF-8" />
-  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <!-- SEO & Open Graph Meta Tags -->
+  <title>Kaparthy Sathwik | AI & ML Portfolio</title>
   <meta name="description"
-    content="Fully responsive personal portfolio website to showcase development and AI projects." />
-  <!-- Fonts -->
+    content="Personal portfolio of Kaparthy Sathwik — Computer Science & Engineering (AI & ML) student at IARE. Specializing in Artificial Intelligence, Computer Vision, Generative AI, and Responsive Web Development." />
+  <meta name="keywords"
+    content="Kaparthy Sathwik, Sathwik84, AI ML Student, Computer Vision, Deep Learning, Sign Language AI, Face Authentication, IARE Hyderabad, Web Development, Portfolio" />
+  <meta name="author" content="Kaparthy Sathwik" />
+
+  <!-- Open Graph / Facebook / LinkedIn / WhatsApp -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://sathwik84.github.io/" />
+  <meta property="og:title" content="Kaparthy Sathwik | AI & ML Portfolio" />
+  <meta property="og:description"
+    content="Explore projects, technical skills, and experience of Kaparthy Sathwik — CSE (AI & ML) student building intelligent systems." />
+  <meta property="og:image" content="/profile.jpg" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Kaparthy Sathwik | AI & ML Portfolio" />
+  <meta name="twitter:description"
+    content="Explore projects, technical skills, and experience of Kaparthy Sathwik — CSE (AI & ML) student building intelligent systems." />
+  <meta name="twitter:image" content="/profile.jpg" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Outfit:wght@500;700;800&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@500;700;800&family=Outfit:wght@500;600;700;800&display=swap"
     rel="stylesheet">
 
-  <title>My Portfolio</title>
+  <!-- Default Dark Theme inline check -->
   <script>
     if (localStorage.getItem('theme') === 'light') {
       document.documentElement.setAttribute('data-theme', 'light');
@@ -23,24 +47,37 @@
 </head>
 
 <body>
+  <!-- Preloader -->
+  <div id="preloader" class="preloader" aria-hidden="true">
+    <div class="preloader-logo">
+      <span class="bracket">&lt;</span><span class="name">Sathwik</span><span class="bracket">/&gt;</span>
+    </div>
+    <div class="preloader-bar">
+      <div class="preloader-bar-fill"></div>
+    </div>
+  </div>
+
+  <!-- Scroll Progress Indicator Bar -->
+  <div id="scroll-progress" class="scroll-progress-bar"></div>
+
   <!-- Custom Cursor -->
   <div class="cursor-dot" data-cursor-dot></div>
   <div class="cursor-outline" data-cursor-outline></div>
 
-  <!-- Noise Overlay -->
+  <!-- Noise Overlay & Fluid Blobs -->
   <div class="noise-overlay"></div>
-
-  <!-- Background Elements -->
   <div class="blob blob-1"></div>
   <div class="blob blob-2"></div>
   <div class="blob blob-3"></div>
 
-  <!-- Header -->
-  <header class="header glass">
+  <!-- Sticky Header Navigation -->
+  <header class="header glass" id="header">
     <div class="container header-content">
-      <a href="#" class="logo">Portfolio.</a>
+      <a href="#hero" class="logo-brand" aria-label="Sathwik Homepage">
+        <span class="bracket">&lt;</span><span class="name">Sathwik</span><span class="bracket">/&gt;</span>
+      </a>
 
-      <div style="display: flex; align-items: center; gap: 1.5rem;">
+      <div class="header-actions">
         <nav class="nav-desktop">
           <ul>
             <li><a href="#hero">Home</a></li>
@@ -54,12 +91,17 @@
           </ul>
         </nav>
 
+        <button id="nav-request-resume-btn" class="btn btn-outline nav-resume-btn" title="Download or Request Resume">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+          Resume
+        </button>
+
         <button id="theme-toggle" class="theme-toggle" aria-label="Toggle Theme">
           <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
           <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
         </button>
 
-        <button id="menu-btn" class="menu-btn" aria-label="Menu">
+        <button id="menu-btn" class="menu-btn" aria-label="Open Navigation Menu">
           <span></span>
           <span></span>
           <span></span>
@@ -67,8 +109,8 @@
       </div>
     </div>
 
-    <!-- Mobile Menu -->
-    <nav id="mobile-menu" class="mobile-menu hidden glass">
+    <!-- Mobile Navigation Menu -->
+    <nav id="mobile-menu" class="mobile-menu hidden">
       <ul>
         <li><a href="#hero">Home</a></li>
         <li><a href="#about">About</a></li>
@@ -83,281 +125,364 @@
   </header>
 
   <main>
-    <!-- Hero Section -->
+    <!-- HERO SECTION -->
     <section id="hero" class="section hero">
       <div class="container hero-content">
+        
+        <!-- Profile Photo -->
+        <div class="hero-avatar-wrapper reveal">
+          <div class="avatar-ring"></div>
+          <img src="/profile.jpg" alt="Kaparthy Sathwik Headshot" class="hero-avatar" />
+        </div>
+
+        <!-- Open to Work Badge -->
         <div class="status-badge reveal">
           <span class="status-dot"></span> Open to Work
         </div>
-        <h1 class="reveal">Hi, I'm <span class="text-gradient">Kaparthy Sathwik</span></h1>
-        <p class="reveal">Computer Science & Engineering Student (AI & ML) | Building Intelligent Systems</p>
+
+        <h1 class="hero-title reveal">Hi, I'm <span class="text-gradient">Kaparthy Sathwik</span></h1>
+        
+        <p class="hero-tagline reveal">
+          Computer Science & Engineering Student (AI & ML) | Building Intelligent Systems
+        </p>
+
+        <!-- Exploring Badge Pill -->
+        <div class="exploring-badge reveal">
+          <span class="exploring-dot"></span>
+          <span>Currently exploring: LLM fine-tuning, Agentic AI, AWS Solutions Architect prep</span>
+        </div>
+
+        <!-- Hero Buttons -->
         <div class="hero-btns reveal">
           <a href="#projects" class="btn">View Work</a>
-          <a href="#" id="request-resume-btn" class="btn btn-outline">Request Resume</a>
+          <button id="hero-request-resume-btn" class="btn btn-outline">Request Resume</button>
         </div>
       </div>
     </section>
 
-    <!-- About Section -->
+    <!-- ABOUT SECTION -->
     <section id="about" class="section about">
       <div class="container">
         <h2 class="section-title reveal">About Me</h2>
-        <div class="about-grid reveal">
-          <div class="about-text glass p-6">
+        
+        <div class="about-grid">
+          <div class="about-text glass reveal">
             <p>
               I am a B-Tech student in Computer Science & Engineering (AI & ML) at the Institute of Aeronautical
               Engineering, Hyderabad (Expected Graduation: 2027).
             </p>
-            <br>
             <p>
               My journey in technology is driven by a passion for solving complex problems using Artificial Intelligence
-              and Machine Learning.
-              I have hands-on experience in building real-time systems using Computer Vision and developing responsive
-              web applications.
+              and Machine Learning. I have hands-on experience in building real-time systems using Computer Vision and
+              developing responsive web applications.
             </p>
-            <br>
             <p>
-              I am currently honing my skills in Cloud Computing (AWS/Oracle) and Generative AI.
-              My recent internship at CodeTech IT Solutions gave me practical exposure to frontend workflows and API
-              integration.
-              I am always eager to learn new technologies and contribute to impactful projects.
+              I am currently honing my skills in Cloud Computing (AWS/Oracle) and Generative AI. My recent internship
+              at CodeTech IT Solutions gave me practical exposure to frontend workflows and API integration. I am always
+              eager to learn new technologies and contribute to impactful projects.
             </p>
           </div>
-          <!-- Replaced code block with a visual quote/highlight card -->
-          <div class="about-visual glass p-6 flex-center">
-            <div class="highlight-card">
-              <h3 style="color: var(--secondary-color); margin-bottom: 1rem;">Core Focus</h3>
-              <ul style="list-style: none; padding: 0;">
-                <li style="margin-bottom: 0.5rem; font-size: 1.1rem;">✨ Artificial Intelligence</li>
-                <li style="margin-bottom: 0.5rem; font-size: 1.1rem;">🚀 Web Development</li>
-                <li style="margin-bottom: 0.5rem; font-size: 1.1rem;">☁️ Cloud Computing</li>
-                <li style="margin-bottom: 0.5rem; font-size: 1.1rem;">🤖 Computer Vision</li>
-              </ul>
+
+          <div class="about-focus-card glass reveal">
+            <h3>Core Focus</h3>
+            <div class="focus-grid">
+              <div class="focus-item">
+                <div class="focus-icon">🤖</div>
+                <span>Artificial Intelligence</span>
+              </div>
+              <div class="focus-item">
+                <div class="focus-icon">💻</div>
+                <span>Web Development</span>
+              </div>
+              <div class="focus-item">
+                <div class="focus-icon">☁️</div>
+                <span>Cloud Computing</span>
+              </div>
+              <div class="focus-item">
+                <div class="focus-icon">👁️</div>
+                <span>Computer Vision</span>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Skills Section -->
+    <!-- TECHNICAL SKILLS SECTION -->
     <section id="skills" class="section skills">
       <div class="container">
         <h2 class="section-title reveal">Technical Skills</h2>
+        
         <div class="skills-grid">
+          <!-- Languages & Web -->
           <div class="skill-card glass reveal">
-            <h3>Languages & Web</h3>
-            <ul>
-              <li>Python, Java, JavaScript</li>
-              <li>HTML, CSS, Bootstrap</li>
-              <li>MySQL</li>
-            </ul>
+            <h3>💻 Languages & Web</h3>
+            <div class="skill-chips">
+              <span class="skill-chip">Python</span>
+              <span class="skill-chip">Java</span>
+              <span class="skill-chip">JavaScript</span>
+              <span class="skill-chip">HTML5</span>
+              <span class="skill-chip">CSS3</span>
+              <span class="skill-chip">Bootstrap</span>
+              <span class="skill-chip">MySQL</span>
+            </div>
           </div>
+
+          <!-- AI & Machine Learning -->
           <div class="skill-card glass reveal">
-            <h3>AI & Machine Learning</h3>
-            <ul>
-              <li>TensorFlow, OpenCV</li>
-              <li>MTCNN, YOLO</li>
-              <li>Computer Vision</li>
-              <li>NLP</li>
-            </ul>
+            <h3>🤖 AI & Machine Learning</h3>
+            <div class="skill-chips">
+              <span class="skill-chip">TensorFlow</span>
+              <span class="skill-chip">OpenCV</span>
+              <span class="skill-chip">MTCNN</span>
+              <span class="skill-chip">YOLO</span>
+              <span class="skill-chip">Computer Vision</span>
+              <span class="skill-chip">NLP</span>
+            </div>
           </div>
+
+          <!-- Tools & Cloud -->
           <div class="skill-card glass reveal">
-            <h3>Tools & Cloud</h3>
-            <ul>
-              <li>Git / GitHub</li>
-              <li>AWS Basics</li>
-              <li>VS Code</li>
-              <li>Networking Basics</li>
-            </ul>
+            <h3>☁️ Tools & Cloud</h3>
+            <div class="skill-chips">
+              <span class="skill-chip">Git / GitHub</span>
+              <span class="skill-chip">AWS Basics</span>
+              <span class="skill-chip">VS Code</span>
+              <span class="skill-chip">Networking Basics</span>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Projects Section -->
+    <!-- FEATURED PROJECTS SECTION -->
     <section id="projects" class="section projects">
       <div class="container">
         <h2 class="section-title reveal">Featured Projects</h2>
+
+        <!-- Project Filter Chips -->
+        <div class="filter-tabs reveal">
+          <button class="filter-btn active" data-filter="all">All</button>
+          <button class="filter-btn" data-filter="aiml">AI/ML</button>
+          <button class="filter-btn" data-filter="web">Web Dev</button>
+          <button class="filter-btn" data-filter="java">Java</button>
+          <button class="filter-btn" data-filter="cv">Computer Vision</button>
+        </div>
+
         <div class="projects-grid">
 
-          <!-- 3. Sign Language to Text & Voice (Pinned & Highlighted as Major Project) -->
-          <article class="project-card glass reveal highlight-major">
-            <div class="project-image">
+          <!-- 1. ✨ Major Project: Sign Language to Voice -->
+          <article class="project-card glass reveal highlight-major" data-category="aiml cv">
+            <div class="project-image-header">
               <span class="project-type-badge major">✨ Major Project</span>
-              <div class="placeholder-img">Sign Lang AI</div>
+              <span class="icon-graphic">🤟</span>
             </div>
             <div class="project-info">
-              <h3>📌 Sign Language to Voice</h3>
-              <p>Real-time hand gesture recognition system converting sign language into readable text and synthesized
-                spoken audio to bridge communication gaps for the hearing-impaired.</p>
-              <div class="tags">
-                <span>Python</span><span>Deep Learning</span><span>Computer Vision</span>
+              <span class="case-study-badge">Detailed Case Study</span>
+              <h3>Sign Language to Voice</h3>
+              <p>Real-time hand gesture recognition system converting sign language into readable text and synthesized spoken audio to bridge communication gaps for the hearing-impaired.</p>
+              
+              <div class="case-study-details">
+                <div class="case-study-item">
+                  <h5>Problem</h5>
+                  <p>Communication barrier between non-verbal individuals and non-sign language speakers.</p>
+                </div>
+                <div class="case-study-item">
+                  <h5>Approach</h5>
+                  <p>Real-time MediaPipe hand tracking + Deep Learning gesture classification + TTS audio pipeline.</p>
+                </div>
+                <div class="case-study-item">
+                  <h5>Result / Impact</h5>
+                  <p>Instant translation into clear readable screen text and spoken audio output.</p>
+                </div>
               </div>
+
+              <div class="tags">
+                <span>Python</span><span>Deep Learning</span><span>Computer Vision</span><span>OpenCV</span>
+              </div>
+              
               <div class="project-links">
-                <a href="https://github.com/Sathwik84/Sign-language-to-Text-and-Voice" target="_blank">View Code</a>
+                <a href="https://github.com/Sathwik84/Sign-language-to-Text-and-Voice" target="_blank" rel="noopener">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                  View Code
+                </a>
               </div>
             </div>
           </article>
 
-          <!-- 2. Face Authentication (Pinned & Highlighted as Minor Project) -->
-          <article class="project-card glass reveal highlight-minor">
-            <div class="project-image">
+          <!-- 2. 💡 Minor Project: Face Authentication System -->
+          <article class="project-card glass reveal highlight-minor" data-category="aiml cv">
+            <div class="project-image-header">
               <span class="project-type-badge minor">💡 Minor Project</span>
-              <div class="placeholder-img">Face Auth</div>
+              <span class="icon-graphic">👤</span>
             </div>
             <div class="project-info">
-              <h3>📌 Face Authentication System</h3>
-              <p>A biometric authentication system utilizing Facial Recognition with OpenCV. Enhances security by
-                providing contactless login and access control instead of traditional passwords.</p>
-              <div class="tags">
-                <span>Python</span><span>OpenCV</span><span>Face Recognition</span>
+              <span class="case-study-badge">Detailed Case Study</span>
+              <h3>Face Authentication System</h3>
+              <p>A biometric authentication system utilizing Facial Recognition with OpenCV. Enhances security by providing contactless login and access control instead of traditional passwords.</p>
+              
+              <div class="case-study-details">
+                <div class="case-study-item">
+                  <h5>Problem</h5>
+                  <p>Insecure password systems prone to shoulder surfing, keylogging, and credential theft.</p>
+                </div>
+                <div class="case-study-item">
+                  <h5>Approach</h5>
+                  <p>OpenCV & MTCNN facial feature extraction flow with feature embedding similarity matching.</p>
+                </div>
+                <div class="case-study-item">
+                  <h5>Result / Impact</h5>
+                  <p>Contactless, fast, and secure biometric authentication access control.</p>
+                </div>
               </div>
+
+              <div class="tags">
+                <span>Python</span><span>OpenCV</span><span>Face Recognition</span><span>Biometrics</span>
+              </div>
+              
               <div class="project-links">
-                <a href="https://github.com/Sathwik84/face-authentication" target="_blank">View Code</a>
+                <a href="https://github.com/Sathwik84/face-authentication" target="_blank" rel="noopener">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                  View Code
+                </a>
               </div>
             </div>
           </article>
 
-          <!-- 1. Early Disease Prediction -->
-          <article class="project-card glass reveal">
-            <div class="project-image">
-              <div class="placeholder-img">Healthcare AI</div>
+          <!-- 3. Early Disease Prediction -->
+          <article class="project-card glass reveal" data-category="aiml">
+            <div class="project-image-header">
+              <span class="icon-graphic">🩺</span>
             </div>
             <div class="project-info">
               <h3>Early Disease Prediction</h3>
-              <p>An AI-based medical prediction system that analyzes symptoms and medical inputs to identify potential
-                diseases early, assisting in preliminary diagnosis and timely consultation.</p>
+              <p>An AI-based medical prediction system that analyzes symptoms and medical inputs to identify potential diseases early, assisting in preliminary diagnosis and timely consultation.</p>
               <div class="tags">
                 <span>Python</span><span>Machine Learning</span><span>Healthcare Data</span>
               </div>
               <div class="project-links">
-                <a href="https://github.com/Sathwik84/Early-Disease-Prediction" target="_blank">View Code</a>
+                <a href="https://github.com/Sathwik84/Early-Disease-Prediction" target="_blank" rel="noopener">View Code</a>
               </div>
             </div>
           </article>
 
-          <!-- 4. Agentic AI Bootcamp -->
-          <article class="project-card glass reveal">
-            <div class="project-image">
-              <div class="placeholder-img">Agentic AI</div>
+          <!-- 4. Agentic AI Explorations -->
+          <article class="project-card glass reveal" data-category="aiml">
+            <div class="project-image-header">
+              <span class="icon-graphic">🧠</span>
             </div>
             <div class="project-info">
               <h3>Agentic AI Explorations</h3>
-              <p>A comprehensive collection of implementations related to agentic AI, including prompt workflows,
-                reasoning chains, and autonomous task execution concepts.</p>
+              <p>A comprehensive collection of implementations related to agentic AI, including prompt workflows, reasoning chains, and autonomous task execution concepts.</p>
               <div class="tags">
                 <span>Python</span><span>LLM Concepts</span><span>AI Agents</span>
               </div>
               <div class="project-links">
-                <a href="https://github.com/Sathwik84/AGENTIC-AI-BOOTCAMP" target="_blank">View Code</a>
+                <a href="https://github.com/Sathwik84/AGENTIC-AI-BOOTCAMP" target="_blank" rel="noopener">View Code</a>
               </div>
             </div>
           </article>
 
           <!-- 5. Self Driving Car Simulator -->
-          <article class="project-card glass reveal">
-            <div class="project-image">
-              <div class="placeholder-img">Autonomous Sim</div>
+          <article class="project-card glass reveal" data-category="java">
+            <div class="project-image-header">
+              <span class="icon-graphic">🚗</span>
             </div>
             <div class="project-info">
               <h3>Self Driving Car Simulator</h3>
-              <p>A simulation project demonstrating core autonomous vehicle concepts such as navigation, environment
-                interaction, and decision-making behavior.</p>
+              <p>A simulation project demonstrating core autonomous vehicle concepts such as navigation, environment interaction, and decision-making behavior.</p>
               <div class="tags">
                 <span>Java</span><span>Simulation Logic</span>
               </div>
               <div class="project-links">
-                <a href="https://github.com/Sathwik84/SelfDrivingCarSimulator" target="_blank">View Code</a>
+                <a href="https://github.com/Sathwik84/SelfDrivingCarSimulator" target="_blank" rel="noopener">View Code</a>
               </div>
             </div>
           </article>
 
           <!-- 6. Driver Drowsiness Detection -->
-          <article class="project-card glass reveal">
-            <div class="project-image">
-              <div class="placeholder-img">Safety AI</div>
+          <article class="project-card glass reveal" data-category="aiml cv">
+            <div class="project-image-header">
+              <span class="icon-graphic">🛡️</span>
             </div>
             <div class="project-info">
               <h3>Driver Drowsiness Detection</h3>
-              <p>A computer vision system that monitors eye closure patterns and facial behavior in real-time to detect
-                driver fatigue and trigger safety alerts.</p>
+              <p>A computer vision system that monitors eye closure patterns and facial behavior in real-time to detect driver fatigue and trigger safety alerts.</p>
               <div class="tags">
                 <span>Python</span><span>OpenCV</span><span>Deep Learning</span>
               </div>
               <div class="project-links">
-                <a href="https://github.com/Sathwik84/Driver-Drowizness-detection" target="_blank">View Code</a>
+                <a href="https://github.com/Sathwik84/Driver-Drowizness-detection" target="_blank" rel="noopener">View Code</a>
               </div>
             </div>
           </article>
 
-          <!-- 7. JDBC -->
-          <article class="project-card glass reveal">
-            <div class="project-image">
-              <div class="placeholder-img">DB Integration</div>
+          <!-- 7. JDBC Connectivity -->
+          <article class="project-card glass reveal" data-category="java">
+            <div class="project-image-header">
+              <span class="icon-graphic">🗄️</span>
             </div>
             <div class="project-info">
               <h3>JDBC Connectivity</h3>
-              <p>A demonstration of robust database connectivity operations including CRUD, complex queries, and data
-                handling between Java applications and relational databases.</p>
+              <p>A demonstration of robust database connectivity operations including CRUD, complex queries, and data handling between Java applications and relational databases.</p>
               <div class="tags">
                 <span>Java</span><span>Database Connectivity</span><span>SQL</span>
               </div>
               <div class="project-links">
-                <a href="https://github.com/Sathwik84/JDBC" target="_blank">View Code</a>
+                <a href="https://github.com/Sathwik84/JDBC" target="_blank" rel="noopener">View Code</a>
               </div>
             </div>
           </article>
 
-          <!-- 8. Eye Brightness & Volume Control -->
-          <article class="project-card glass reveal">
-            <div class="project-image">
-              <div class="placeholder-img">Gesture Control</div>
+          <!-- 8. Touchless System Control -->
+          <article class="project-card glass reveal" data-category="aiml cv">
+            <div class="project-image-header">
+              <span class="icon-graphic">🖐️</span>
             </div>
             <div class="project-info">
               <h3>Touchless System Control</h3>
-              <p>A Human-Computer Interaction (HCI) system where eye movements or hand gestures control system
-                brightness and volume without physical contact.</p>
+              <p>A Human-Computer Interaction (HCI) system where eye movements or hand gestures control system brightness and volume without physical contact.</p>
               <div class="tags">
                 <span>Python</span><span>OpenCV</span><span>Gesture Tracking</span>
               </div>
               <div class="project-links">
-                <a href="https://github.com/Sathwik84/eye_brightness_volume_control" target="_blank">View Code</a>
+                <a href="https://github.com/Sathwik84/eye_brightness_volume_control" target="_blank" rel="noopener">View Code</a>
               </div>
             </div>
           </article>
 
           <!-- 9. Charge Ease Find -->
-          <article class="project-card glass reveal">
-            <div class="project-image">
-              <div class="placeholder-img">Utility App</div>
+          <article class="project-card glass reveal" data-category="web">
+            <div class="project-image-header">
+              <span class="icon-graphic">⚡</span>
             </div>
             <div class="project-info">
               <h3>Charge Ease Find</h3>
-              <p>A web application helping electric vehicle users locate nearby charging stations efficiently, improving
-                accessibility and route planning.</p>
+              <p>A web application helping electric vehicle users locate nearby charging stations efficiently, improving accessibility and route planning.</p>
               <div class="tags">
                 <span>TypeScript</span><span>Web Development</span>
               </div>
               <div class="project-links">
-                <a href="https://github.com/Sathwik84/charge-ease-find" target="_blank">View Code</a>
+                <a href="https://github.com/Sathwik84/charge-ease-find" target="_blank" rel="noopener">View Code</a>
               </div>
             </div>
           </article>
 
           <!-- 10. Memory Matching Game -->
-          <article class="project-card glass reveal">
-            <div class="project-image">
-              <div class="placeholder-img">Web Game</div>
+          <article class="project-card glass reveal" data-category="web">
+            <div class="project-image-header">
+              <span class="icon-graphic">🎮</span>
             </div>
             <div class="project-info">
               <h3>Memory Matching Game</h3>
-              <p>An interactive browser-based card matching game designed to improve memory and concentration, featuring
-                dynamic UI updates and scoring logic.</p>
+              <p>An interactive browser-based card matching game designed to improve memory and concentration, featuring dynamic UI updates and scoring logic.</p>
               <div class="tags">
                 <span>JavaScript</span><span>HTML</span><span>CSS</span>
               </div>
               <div class="project-links">
-                <a href="https://github.com/Sathwik84/memory_matching_game" target="_blank">Play Demo</a>
+                <a href="https://github.com/Sathwik84/memory_matching_game" target="_blank" rel="noopener">
+                  🎮 Play Demo / Code
+                </a>
               </div>
             </div>
           </article>
@@ -366,56 +491,52 @@
       </div>
     </section>
 
-    <!-- Services & Activities Section -->
+    <!-- SERVICES & COMMUNITY SECTION -->
     <section id="services" class="section services">
       <div class="container">
         <h2 class="section-title reveal">Services & Community</h2>
+        
         <div class="services-grid">
           <div class="service-card glass reveal">
             <div class="service-icon">🤝</div>
             <h3>NSS Volunteer</h3>
             <p><strong>National Service Scheme</strong></p>
-            <p>Participated in community service and social awareness programs, contributing to rural development and
-              public welfare initiatives.</p>
+            <p>Participated in community service and social awareness programs, contributing to rural development and public welfare initiatives.</p>
           </div>
 
           <div class="service-card glass reveal">
             <div class="service-icon">🌐</div>
             <h3>Tech Equity Collective</h3>
-            <p><strong>Member - Google Developers</strong></p>
-            <p>Engaged in collaborative learning and technology initiatives to bridge the gap in tech education and
-              opportunities.</p>
+            <p><strong>Member — Google Developers</strong></p>
+            <p>Engaged in collaborative learning and technology initiatives to bridge the gap in tech education and opportunities.</p>
           </div>
 
           <div class="service-card glass reveal">
             <div class="service-icon">💻</div>
             <h3>Web Development</h3>
             <p><strong>Freelance & Projects</strong></p>
-            <p>Building responsive, modern websites using HTML, CSS, JavaScript, and React/Vite. specialized in
-              glassmorphism and interactive UI.</p>
+            <p>Building responsive, modern websites using HTML, CSS, JavaScript, and React/Vite, specialized in glassmorphism and interactive UI.</p>
           </div>
 
           <div class="service-card glass reveal">
             <div class="service-icon">🤖</div>
             <h3>AI Solutions</h3>
             <p><strong>Machine Learning Engineer</strong></p>
-            <p>Developing AI models for disease prediction, gesture recognition, and automation using TensorFlow,
-              OpenCV, and Python.</p>
+            <p>Developing AI models for disease prediction, gesture recognition, and automation using TensorFlow, OpenCV, and Python.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Experience & Education Section -->
+    <!-- PROFESSIONAL JOURNEY SECTION -->
     <section id="experience" class="section experience">
       <div class="container">
         <h2 class="section-title reveal">Professional Journey</h2>
 
-        <div class="about-grid reveal" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
-
-          <!-- Education -->
-          <div class="glass p-6">
-            <h3>Education</h3>
+        <div class="timeline-grid">
+          <!-- Education Column -->
+          <div class="timeline-column glass reveal">
+            <h3>🎓 Education</h3>
             <div class="experience-item">
               <h4>B.Tech in CSE (AI & ML)</h4>
               <p class="text-muted">Institute of Aeronautical Engineering | 2027 (Expected)</p>
@@ -430,9 +551,9 @@
             </div>
           </div>
 
-          <!-- Internships -->
-          <div class="glass p-6">
-            <h3>Internships</h3>
+          <!-- Internships Column -->
+          <div class="timeline-column glass reveal">
+            <h3>💼 Internships</h3>
             <div class="experience-item">
               <h4>Front-End Development Intern</h4>
               <p class="text-muted">CodeTech IT Solutions | Mar 2025 - Apr 2025</p>
@@ -444,30 +565,31 @@
             </div>
           </div>
 
-          <!-- Certificates -->
-          <div class="glass p-6">
-            <h3>Certifications</h3>
-            <ul class="cert-list">
-              <li>AWS Certified Cloud Practitioner (CLF-C02)</li>
-              <li>Oracle Cloud Infrastructure AI Foundations 2025</li>
-              <li>IBM SkillsBuild: Intro to AI, NLP, & CV</li>
-              <li>Migrating Generative AI Applications to AWS</li>
-              <li>Prompt Engineering (LinkedIn Learning)</li>
-            </ul>
+          <!-- Certifications Column -->
+          <div class="timeline-column glass reveal">
+            <h3>📜 Certifications</h3>
+            <div class="cert-list">
+              <div class="cert-badge">☁️ AWS Certified Cloud Practitioner (CLF-C02)</div>
+              <div class="cert-badge">⚡ Oracle Cloud Infrastructure AI Foundations 2025</div>
+              <div class="cert-badge">🤖 IBM SkillsBuild: Intro to AI, NLP, & CV</div>
+              <div class="cert-badge">🚀 Migrating Generative AI Applications to AWS</div>
+              <div class="cert-badge">💡 Prompt Engineering (LinkedIn Learning)</div>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Achievements Section -->
+    <!-- ACHIEVEMENTS SECTION -->
     <section id="achievements" class="section achievements">
       <div class="container">
         <h2 class="section-title reveal">Achievements</h2>
-        <div class="skills-grid">
-          <!-- Coding Stats -->
-          <div class="skill-card glass reveal">
-            <h3 style="color: var(--accent-color)">Coding Profiles</h3>
-            <ul style="text-align: left; padding-left: 1rem;">
+
+        <div class="achievements-grid">
+          <!-- Coding Profiles -->
+          <div class="achievement-card glass reveal">
+            <h3 style="color: var(--primary-color)">🏆 Coding Profiles</h3>
+            <ul class="achievement-list">
               <li>🏆 <strong>LeetCode:</strong> 100+ Problems Solved</li>
               <li>🏆 <strong>GeeksforGeeks:</strong> 100+ Problems Solved</li>
               <li>🥈 <strong>HackerRank:</strong> Java & Python (Silver)</li>
@@ -475,18 +597,18 @@
           </div>
 
           <!-- Sports -->
-          <div class="skill-card glass reveal">
-            <h3 style="color: var(--primary-color)">Sports</h3>
-            <ul style="text-align: left; padding-left: 1rem;">
+          <div class="achievement-card glass reveal">
+            <h3 style="color: var(--secondary-color)">🏐 Sports</h3>
+            <ul class="achievement-list">
               <li>🏐 <strong>Volleyball:</strong> Won Inter-School Competition (2019)</li>
-              <li>🏃 Active Sports Enthusiast</li>
+              <li>🏃 <strong>Fitness:</strong> Active Sports Enthusiast</li>
             </ul>
           </div>
 
-          <!-- Other -->
-          <div class="skill-card glass reveal">
-            <h3 style="color: var(--secondary-color)">Hackathons</h3>
-            <ul style="text-align: left; padding-left: 1rem;">
+          <!-- Learning & Experience -->
+          <div class="achievement-card glass reveal">
+            <h3 style="color: #34d399">🚀 Hackathons & Upskilling</h3>
+            <ul class="achievement-list">
               <li>🚀 <strong>CodeTech Intern:</strong> Successfully deployed real-world frontend apps.</li>
               <li>💡 <strong>Active Learner:</strong> Constantly upskilling in GenAI & Cloud.</li>
             </ul>
@@ -495,16 +617,16 @@
       </div>
     </section>
 
-    <!-- Contact Section -->
+    <!-- CONTACT SECTION -->
     <section id="contact" class="section contact">
       <div class="container">
         <div class="contact-wrapper glass reveal">
-          <h2 class="section-title">Get In Touch</h2>
+          <h2>Get In Touch</h2>
           <p>Have a project in mind or want to collaborate? Feel free to reach out!</p>
           <a href="mailto:kaparthysathwik123@gmail.com" class="btn">Say Hello</a>
 
           <div class="social-links">
-            <a href="https://github.com/Sathwik84" target="_blank" aria-label="GitHub">
+            <a href="https://github.com/Sathwik84" target="_blank" rel="noopener" aria-label="GitHub Profile">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path
@@ -512,7 +634,7 @@
                 </path>
               </svg>
             </a>
-            <a href="https://www.linkedin.com/in/sathwik-kaparthy-732a92376/" target="_blank" aria-label="LinkedIn">
+            <a href="https://www.linkedin.com/in/sathwik-kaparthy-732a92376/" target="_blank" rel="noopener" aria-label="LinkedIn Profile">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
@@ -520,14 +642,14 @@
                 <circle cx="4" cy="4" r="2"></circle>
               </svg>
             </a>
-            <a href="mailto:kaparthysathwik123@gmail.com" aria-label="Email">
+            <a href="mailto:kaparthysathwik123@gmail.com" aria-label="Send Email">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
                 <polyline points="22,6 12,13 2,6"></polyline>
               </svg>
             </a>
-            <a href="https://wa.me/918790609762" target="_blank" aria-label="WhatsApp">
+            <a href="https://wa.me/918790609762" target="_blank" rel="noopener" aria-label="WhatsApp Chat">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path
@@ -535,7 +657,7 @@
                 </path>
               </svg>
             </a>
-            <a href="https://www.instagram.com/itsme_sathwikk/" target="_blank" aria-label="Instagram">
+            <a href="https://www.instagram.com/itsme_sathwikk/" target="_blank" rel="noopener" aria-label="Instagram Profile">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
@@ -555,16 +677,17 @@
     </div>
   </footer>
 
-  <!-- Request Resume Modal -->
-  <div id="resume-modal" class="modal-overlay">
+  <!-- REQUEST RESUME / CV MODAL -->
+  <div id="resume-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-title">
     <div class="modal-content glass">
       <button class="modal-close" id="close-resume-modal" aria-label="Close modal">&times;</button>
+      
       <div class="modal-header">
-        <h2>📬 Request Resume / CV</h2>
-        <p>Select the document you need and enter your email.</p>
+        <h2 id="modal-title">📬 Request Resume / CV</h2>
+        <p>Select the document you need and enter your email address.</p>
       </div>
+
       <form id="resume-request-form" class="modal-form">
-        <!-- Document Type Selector -->
         <div class="document-selector">
           <label class="doc-option-label">
             <input type="radio" name="document-type" value="resume" checked style="display: none;" />
@@ -575,21 +698,21 @@
             <span class="doc-pill">💼 Curriculum Vitae (CV)</span>
           </label>
         </div>
+
         <div class="input-group">
-          <input type="email" id="request-email" placeholder="name@company.com" required aria-label="Your email address" />
+          <input type="email" id="request-email" placeholder="your.email@example.com" required aria-label="Your email address" />
         </div>
+
         <button type="submit" class="btn modal-submit-btn">
           <span class="btn-text">Send Document</span>
-          <span class="btn-loader" style="display: none; vertical-align: middle;">
-            <svg class="spinner" viewBox="0 0 50 50" style="width: 20px; height: 20px; animation: rotate 2s linear infinite; display: inline-block;"><circle cx="25" cy="25" r="20" fill="none" stroke-width="5" stroke="white" stroke-linecap="round" style="stroke-dasharray: 90, 150; stroke-dashoffset: 0;"></circle></svg>
-          </span>
         </button>
       </form>
+
       <div id="modal-success" class="modal-success-state" style="display: none;">
         <div class="success-icon">✨</div>
         <h3>Sent Successfully!</h3>
-        <p>My <span id="success-doc-type">document</span> has been sent to <strong id="success-email">email@example.com</strong></p>
-        <p class="download-caption">Your browser download has also started automatically!</p>
+        <p>My <span id="success-doc-type">document</span> has been dispatched for <strong id="success-email">email@example.com</strong></p>
+        <p class="download-caption">📥 Your browser download has also started automatically!</p>
       </div>
     </div>
   </div>

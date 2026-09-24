@@ -89,3 +89,7 @@ h6 {
     border: 1px solid var(--card-border);
     border-radius: 16px;
 }
+
+.hidden {
+    display: none !important;
+}

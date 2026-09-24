@@ -1,40 +1,65 @@
 :root {
-  /* Colors */
+  /* Core Colors */
   --bg-color: #0f172a;
+  --bg-color-alt: #1e293b;
   --text-color: #f8fafc;
   --text-muted: #94a3b8;
-  --primary-color: #8b5cf6;
-  --primary-hover: #7c3aed;
-  --secondary-color: #06b6d4;
-  --accent-color: #ec4899;
-  --card-bg: rgba(30, 41, 59, 0.7);
-  --card-border: rgba(255, 255, 255, 0.1);
+
+  /* Blue-to-Indigo Gradient Palette (#38bdf8 to #818cf8) */
+  --primary-color: #38bdf8;
+  --primary-hover: #0284c7;
+  --secondary-color: #818cf8;
+  --secondary-hover: #6366f1;
+  --accent-gradient: linear-gradient(135deg, #38bdf8 0%, #818cf8 100%);
+  --accent-gradient-hover: linear-gradient(135deg, #0284c7 0%, #6366f1 100%);
+
+  /* UI Glassmorphism & Cards */
+  --card-bg: rgba(30, 41, 59, 0.75);
+  --card-border: rgba(56, 189, 248, 0.18);
+  --card-border-glow: rgba(56, 189, 248, 0.45);
+  --card-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+  --card-glow: 0 0 25px rgba(56, 189, 248, 0.18);
 
   /* Typography */
-  --font-main: 'Inter', sans-serif;
-  --font-heading: 'Outfit', sans-serif;
+  --font-main: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-heading: 'Outfit', 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', Consolas, monospace;
 
   /* Spacing */
   --spacing-xs: 0.5rem;
   --spacing-sm: 1rem;
   --spacing-md: 2rem;
   --spacing-lg: 4rem;
-  --spacing-xl: 8rem;
+  --spacing-xl: 6rem;
 
   /* Layout */
   --container-width: 1200px;
   --header-height: 80px;
 
   /* Transitions */
-  --transition-fast: 0.2s ease;
-  --transition-normal: 0.3s ease;
-  --transition-slow: 0.5s ease;
+  --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 [data-theme="light"] {
   --bg-color: #f8fafc;
+  --bg-color-alt: #f1f5f9;
   --text-color: #0f172a;
-  --text-muted: #64748b;
-  --card-bg: rgba(255, 255, 255, 0.8);
-  --card-border: rgba(0, 0, 0, 0.1);
+  --text-muted: #334155;
+
+  /* Blue-to-Indigo Palette for Light Theme with proper accessibility & contrast */
+  --primary-color: #0284c7;
+  --primary-hover: #0369a1;
+  --secondary-color: #4f46e5;
+  --secondary-hover: #4338ca;
+  --accent-gradient: linear-gradient(135deg, #0284c7 0%, #4f46e5 100%);
+  --accent-gradient-hover: linear-gradient(135deg, #0369a1 0%, #4338ca 100%);
+
+  /* Light Theme Glass & Card Tokens */
+  --card-bg: rgba(255, 255, 255, 0.9);
+  --card-border: rgba(2, 132, 199, 0.22);
+  --card-border-glow: rgba(2, 132, 199, 0.5);
+  --card-shadow: 0 10px 30px -10px rgba(15, 23, 42, 0.1);
+  --card-glow: 0 0 25px rgba(2, 132, 199, 0.2);
 }
